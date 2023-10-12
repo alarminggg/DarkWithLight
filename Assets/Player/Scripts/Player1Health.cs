@@ -39,7 +39,7 @@ public class Player1Health : MonoBehaviour
     void OnDeath()
     {
         Debug.Log("GAME OVER - YOU DIED");
-        GetComponent<PlayerController>().enabled = false;
+        GetComponent<NewPlayer1Movement>().enabled = false;
         dead = true;
 
 

@@ -36,10 +36,10 @@ public class Player2Health : MonoBehaviour
         return hitPoints / maxHitPoints;
     }
 
-    void OnDeath()
+    public void OnDeath()
     {
         Debug.Log("GAME OVER - YOU DIED");
-        GetComponent<PlayerController>().enabled = false;
+        GetComponent<NewPlayer1Movement>().enabled = false;
         dead = true;
 
 

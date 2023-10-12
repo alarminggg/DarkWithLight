@@ -9,15 +9,6 @@ public class WallDamage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player1")
-        {
-            Debug.Log("Player 1 touched the wall!");
-            Player1Health player1Health = collision.gameObject.GetComponent<Player1Health>();
-            if (player1Health != null)
-            {
-                player1Health.Hit(rawDamage);
-            }
-        }
         if (collision.gameObject.name == "Player2")
         {
             Debug.Log("Player 2 touched the wall!");
