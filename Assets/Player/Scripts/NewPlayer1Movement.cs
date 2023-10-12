@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Processors;
 
 public class NewPlayer1Movement : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class NewPlayer1Movement : MonoBehaviour
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
 
+    public bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,27 +27,33 @@ public class NewPlayer1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!isDead)
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-        if(!isFacingRight && horizontal > 0f)
-        {
-            Flip();
-        }
-        else if(!isFacingRight && horizontal < 0f)
-        {
-            Flip();
+            if (!isFacingRight && horizontal > 0f)
+            {
+                Flip();
+            }
+            else if (!isFacingRight && horizontal < 0f)
+            {
+                Flip();
+            }
         }
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed && IsGrounded())
+        if (!isDead)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        }
-        if (context.canceled && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            if (context.performed && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            }
+            if (context.canceled && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
         }
     }
 
@@ -64,6 +73,10 @@ public class NewPlayer1Movement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        horizontal = context.ReadValue<Vector2>().x;
+        if (!isDead)
+        {
+            horizontal = context.ReadValue<Vector2>().x;
+        }
+            
     }
 }

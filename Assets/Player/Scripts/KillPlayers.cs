@@ -12,10 +12,10 @@ public class WallDamage : MonoBehaviour
         if (collision.gameObject.name == "Player2")
         {
             Debug.Log("Player 2 touched the wall!");
-            Player2Health player2Health = collision.gameObject.GetComponent<Player2Health>();
-            if (player2Health != null)
+            Player1Health player1Health = collision.gameObject.GetComponent<Player1Health>();
+            if (player1Health != null)
             {
-                player2Health.Hit(rawDamage);
+                player1Health.Hit(rawDamage);
             }
         }
     }
