@@ -24,6 +24,8 @@ public class Player2Health : MonoBehaviour
         }
     }
 
+
+
     void Start()
     {
         hitPoints = maxHitPoints;

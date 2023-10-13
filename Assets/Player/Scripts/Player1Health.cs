@@ -7,12 +7,9 @@ public class Player1Health : MonoBehaviour
 
     [SerializeField] float maxHitPoints = 100f;
     float hitPoints;
-    
     private bool dead = false;
 
     NewPlayer1Movement newPlayer1Movement;
-
-    
 
     public bool IsDead
     {
@@ -27,14 +24,20 @@ public class Player1Health : MonoBehaviour
         }
     }
 
+    public float CurrentHealth
+    {
+        get
+        {
+            return hitPoints;
+        }
+    }
+
     void Start()
     {
         hitPoints = maxHitPoints;
 
         newPlayer1Movement = GetComponent<NewPlayer1Movement>();
     }
-
-    
 
     public void Hit(float rawDamage)
     {
@@ -60,12 +63,13 @@ public class Player1Health : MonoBehaviour
         return hitPoints / maxHitPoints;
     }
 
-
     void OnDeath()
     {
         Debug.Log("GAME OVER - YOU DIED");
         GetComponent<NewPlayer1Movement>().enabled = false;
         IsDead = true;
+
+
     }
 
 

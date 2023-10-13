@@ -11,11 +11,33 @@ public class HealingLight : MonoBehaviour
     {
         if (collision.gameObject.name == "Player1")
         {
-            Debug.Log("Player 1 Feel Light!");
             Player1Health player1Health = collision.gameObject.GetComponent<Player1Health>();
             if (player1Health != null)
             {
-                player1Health.Touch(rawHeal);
+                Debug.Log("Player 1 Feels Light!");
+
+                
+                if (player1Health.CurrentHealth < 100)
+                {
+                    float amountToHeal = 100 - player1Health.CurrentHealth;
+                    player1Health.Touch(amountToHeal);
+                }
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player1")
+        {
+            Player1Health player1Health = collision.gameObject.GetComponent<Player1Health>();
+            if (player1Health != null)
+            {
+                
+                if (player1Health.CurrentHealth < 100)
+                {
+                    player1Health.Touch(rawHeal * Time.deltaTime);
+                }
             }
         }
     }
