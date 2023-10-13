@@ -7,18 +7,21 @@ public class Player1Health : MonoBehaviour
 
     [SerializeField] float maxHitPoints = 100f;
     float hitPoints;
+    
     private bool dead = false;
 
     NewPlayer1Movement newPlayer1Movement;
 
+    
+
     public bool IsDead
     {
-        get 
-        { 
-            return dead; 
+        get
+        {
+            return dead;
         }
-        set 
-        { 
+        set
+        {
             dead = value;
             newPlayer1Movement.isDead = dead;
         }
@@ -30,6 +33,8 @@ public class Player1Health : MonoBehaviour
 
         newPlayer1Movement = GetComponent<NewPlayer1Movement>();
     }
+
+    
 
     public void Hit(float rawDamage)
     {
@@ -43,18 +48,24 @@ public class Player1Health : MonoBehaviour
         }
     }
 
+    public void Touch(float rawHeal)
+    {
+        hitPoints += rawHeal;
+
+        Debug.Log("HEALING! " + hitPoints.ToString());
+    }
+
     float NormalisedHitPoint()
     {
         return hitPoints / maxHitPoints;
     }
+
 
     void OnDeath()
     {
         Debug.Log("GAME OVER - YOU DIED");
         GetComponent<NewPlayer1Movement>().enabled = false;
         IsDead = true;
-
-
     }
 
 

@@ -188,7 +188,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Free-City-Backgrounds-Pixel-Art3_0: 903216436081468687
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
