@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player2Health : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class Player2Health : MonoBehaviour
         GetComponent<NewPlayer1Movement>().enabled = false;
         IsDead = true;
 
-
+        SceneManager.LoadScene(0);
     }
 
 

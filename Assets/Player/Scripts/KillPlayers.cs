@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallDamage : MonoBehaviour
+public class KillPlayers : MonoBehaviour
 {
     [SerializeField]
     float rawDamage = 1000f;
@@ -11,7 +11,7 @@ public class WallDamage : MonoBehaviour
     {
         if (collision.gameObject.name == "Player2")
         {
-            Debug.Log("Player 2 touched the wall!");
+            Debug.Log("Player 2 burned in the light!");
             Player1Health player1Health = collision.gameObject.GetComponent<Player1Health>();
             if (player1Health != null)
             {

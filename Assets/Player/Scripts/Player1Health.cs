@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player1Health : MonoBehaviour
 {
@@ -92,11 +93,11 @@ public class Player1Health : MonoBehaviour
 
     void OnDeath()
     {
-        Debug.Log("GAME OVER - YOU DIED");
+        Debug.Log("GAME OVER - player 1");
         GetComponent<NewPlayer1Movement>().enabled = false;
         IsDead = true;
 
-
+        SceneManager.LoadScene(0);
     }
 
 
