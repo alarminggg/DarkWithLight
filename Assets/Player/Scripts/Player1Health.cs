@@ -9,6 +9,9 @@ public class Player1Health : MonoBehaviour
     float hitPoints;
     private bool dead = false;
 
+    private float damageTimer = 1.2f;
+    private float timer = 0f;
+
     NewPlayer1Movement newPlayer1Movement;
 
     public bool IsDead
@@ -39,6 +42,17 @@ public class Player1Health : MonoBehaviour
         newPlayer1Movement = GetComponent<NewPlayer1Movement>();
     }
 
+    void Update()
+    {
+        
+        timer += Time.deltaTime;
+        if (timer >= damageTimer)
+        {
+            TakeDamage(20);
+            timer = 0f; 
+        }
+    }
+
     public void Hit(float rawDamage)
     {
         hitPoints -= rawDamage;
@@ -51,6 +65,7 @@ public class Player1Health : MonoBehaviour
         }
     }
 
+
     public void Touch(float rawHeal)
     {
         hitPoints += rawHeal;
@@ -61,6 +76,18 @@ public class Player1Health : MonoBehaviour
     float NormalisedHitPoint()
     {
         return hitPoints / maxHitPoints;
+    }
+
+    void TakeDamage(float damage)
+    {
+        hitPoints -= damage;
+
+        Debug.Log("OUCH: " + hitPoints.ToString());
+
+        if (hitPoints <= 0)
+        {
+            OnDeath();
+        }
     }
 
     void OnDeath()

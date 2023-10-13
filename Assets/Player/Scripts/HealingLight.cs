@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealingLight : MonoBehaviour
 {
     [SerializeField]
-    float rawHeal = 20f;
+    float rawHeal = 100f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,7 +16,6 @@ public class HealingLight : MonoBehaviour
             {
                 Debug.Log("Player 1 Feels Light!");
 
-                
                 if (player1Health.CurrentHealth < 100)
                 {
                     float amountToHeal = 100 - player1Health.CurrentHealth;
@@ -33,10 +32,11 @@ public class HealingLight : MonoBehaviour
             Player1Health player1Health = collision.gameObject.GetComponent<Player1Health>();
             if (player1Health != null)
             {
-                
-                if (player1Health.CurrentHealth < 100)
+                float remainingHeal = 100 - player1Health.CurrentHealth;
+                if (remainingHeal > 0)
                 {
-                    player1Health.Touch(rawHeal * Time.deltaTime);
+                    float amountToHeal = Mathf.Min(rawHeal * Time.deltaTime, remainingHeal);
+                    player1Health.Touch(amountToHeal);
                 }
             }
         }
